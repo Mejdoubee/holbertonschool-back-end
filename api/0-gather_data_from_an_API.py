@@ -36,7 +36,7 @@ def display_todo(id):
               f"with tasks({completed_count}/{total_tasks}):")
 
         for task in completed_tasks:
-            print(f"\t{task['title']}")
+            print(f"\t {task['title']}")
 
     except requests.RequestException as e:
         print(f"An error occurred: {e}")
