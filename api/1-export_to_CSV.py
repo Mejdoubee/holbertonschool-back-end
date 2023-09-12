@@ -52,8 +52,14 @@ def export_to_csv(id):
         todos = get_todos(id)
 
         with open(f"{id}.csv", "w", newline='') as csv_file:
-            fieldnames = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
-            writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+            fieldnames = [
+                "USER_ID",
+                "USERNAME",
+                "TASK_COMPLETED_STATUS",
+                "TASK_TITLE"
+            ]
+            writer = csv.DictWriter(
+                csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
             for task in todos:
                 writer.writerow({
                     "USER_ID": id,
