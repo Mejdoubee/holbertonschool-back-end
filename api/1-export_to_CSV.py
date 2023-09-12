@@ -46,14 +46,21 @@ def display_todo(id):
 def export_to_csv(id):
     '''Export the TODO list to CSV for the given employee ID'''
     try:
-        employee_name = get_name(id)
+        user_data = requests.get(f'{BASE_URL}/users/{id}').json()
+        employee_username = user_data.get('username')
+
         todos = get_todos(id)
 
-        with open(f"{id}.csv", "w") as csv_file:
-            writer = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
+        with open(f"{id}.csv", "w", newline='') as csv_file:
+            fieldnames = ["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"]
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
             for task in todos:
-                writer.writerow(
-                    [id, employee_name, task['completed'], task['title']])
+                writer.writerow({
+                    "USER_ID": id,
+                    "USERNAME": employee_username,
+                    "TASK_COMPLETED_STATUS": task['completed'],
+                    "TASK_TITLE": task['title']
+                })
 
     except requests.RequestException as e:
         print(f"An error occurred: {e}")
