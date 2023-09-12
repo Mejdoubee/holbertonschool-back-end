@@ -2,9 +2,9 @@
 '''
 This module defines the REST API
 '''
+import csv
 import requests
 from sys import argv
-import csv
 BASE_URL = 'https://jsonplaceholder.typicode.com'
 
 
