@@ -54,9 +54,9 @@ def export_to_json(id):
         tasks_list = []
         for task in todos:
             task_dict = {
+                "username": employee_username,
                 "task": task['title'],
-                "completed": task['completed'],
-                "username": employee_username
+                "completed": task['completed']
             }
             tasks_list.append(task_dict)
 
