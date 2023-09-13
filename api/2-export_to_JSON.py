@@ -48,7 +48,7 @@ def export_to_json(id):
     try:
         employee_username = get_username(id)
         todos = get_todos(id)
-        
+
         tasks_list = []
         for task in todos:
             task_data = {
@@ -58,6 +58,7 @@ def export_to_json(id):
             }
             tasks_list.append(task_data)
 
+        json_structure = {str(id): tasks_list}
         with open(f"{id}.json", "w") as json_file:
             json.dump({str(id): tasks_list}, json_file)
 
