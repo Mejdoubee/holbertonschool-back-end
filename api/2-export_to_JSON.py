@@ -4,7 +4,7 @@ This module defines the REST API
 '''
 import json
 import requests
-from sys import argv    
+from sys import argv
 BASE_URL = 'https://jsonplaceholder.typicode.com'
 
 
