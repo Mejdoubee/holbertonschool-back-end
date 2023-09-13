@@ -46,7 +46,7 @@ def display_todo(id):
 def export_to_json(id):
     '''Export the TODO list to JSON for the given employee ID'''
     try:
-        employee_username = get_username(id)
+        employee_username = get_name(id)
         todos = get_todos(id)
 
         tasks_list = []
