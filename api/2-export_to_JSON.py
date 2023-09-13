@@ -46,24 +46,20 @@ def display_todo(id):
 def export_to_json(id):
     '''Export the TODO list to JSON for the given employee ID'''
     try:
-        user_data = requests.get(f'{BASE_URL}/users/{id}').json()
-        employee_username = user_data.get('username')
-
+        employee_username = get_username(id)
         todos = get_todos(id)
-
+        
         tasks_list = []
         for task in todos:
-            task_dict = {
-                "username": employee_username,
+            task_data = {
                 "task": task['title'],
-                "completed": task['completed']
+                "completed": task['completed'],
+                "username": employee_username
             }
-            tasks_list.append(task_dict)
-
-        data = {str(id): tasks_list}
+            tasks_list.append(task_data)
 
         with open(f"{id}.json", "w") as json_file:
-            json.dump(data, json_file)
+            json.dump({str(id): tasks_list}, json_file)
 
     except requests.RequestException as e:
         print(f"An error occurred: {e}")
