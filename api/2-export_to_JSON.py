@@ -60,7 +60,7 @@ def export_to_json(id):
 
         json_structure = {str(id): tasks_list}
         with open(f"{id}.json", "w") as json_file:
-            json.dump({str(id): tasks_list}, json_file)
+            json.dump(json_structure, json_file)
 
     except requests.RequestException as e:
         print(f"An error occurred: {e}")
